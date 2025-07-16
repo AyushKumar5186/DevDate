@@ -59,6 +59,9 @@ const UserModel = new mongoose.Schema({
         // minlength: {value: 1, message: "Skills must be at least 1 skill"},
         // maxlength: {value: 10, message: "Skills must be less than 10 skills"},
     },
+    profilePicture: {
+        type: String
+    },
 }, {timestamps: true})
 
 

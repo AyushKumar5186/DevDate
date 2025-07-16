@@ -49,4 +49,38 @@ const validator = require("validator");
     }
 }
 
-module.exports = {validateSignUpData};
+const validateLoginData = (data)=> {
+    try {
+
+        const dataRequired = ["email", "password"];
+
+        dataRequired.forEach(field => {
+            if(!data[field]){
+                return ({message: `Invalid email or password`, success: false});
+            }
+        })
+
+        if(data.password.length < 8){
+            return ({message: "Invalid email or password", success: false});
+        }
+        if(!validator.isStrongPassword(data.password)){
+            return ({message: "Invalid email or password", success: false});
+        }
+
+        if(data.email.length < 3 || data.email.length > 50){
+            return ({message: "Invalid email or password", success: false});
+        }
+
+        if(!validator.isEmail(data.email)){
+            return ({message: "Invalid email or password", success: false});
+        }
+
+        return ({message: "User logged in successfully", success: true});
+    }
+ catch (error) {
+        console.log(error);
+        return ({message: error.message, success: false})   ;
+    }
+}
+
+module.exports = {validateSignUpData, validateLoginData};
